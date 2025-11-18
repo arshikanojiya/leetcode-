@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int peakIndexInMountainArray(vector<int>& arr) {
+        // Initialize binary search boundaries
+        // Start from index 1 and end at size-2 since the peak cannot be at the boundaries
+        int left = 1;
+        int right = arr.size() - 2;
+      
+        // Binary search for the peak element
+        while (left < right) {
+            // Calculate middle index using bit shift (equivalent to dividing by 2)
+            int mid = (left + right) >> 1;
+          
+            // If mid element is greater than the next element,
+            // we're on the descending part of the mountain or at the peak
+            // The peak must be at mid or to the left of mid
+            if (arr[mid] > arr[mid + 1]) {
+                right = mid;
+            }
+            // If mid element is less than or equal to the next element,
+            // we're on the ascending part of the mountain
+            // The peak must be to the right of mid
+            else {
+                left = mid + 1;
+            }
+        }
+      
+        // When left == right, we've found the peak index
+        return left;
+    }
+};
