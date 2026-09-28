@@ -1,0 +1,19 @@
+
+class Solution {
+    public int maxDepth(String s) {
+        int maxDepth = 0;
+
+        Stack<Character> stack = new Stack<>();
+
+        for (char ch : s.toCharArray()) {
+            if (ch == '(') {
+                stack.push(ch);
+                maxDepth = Math.max(maxDepth, stack.size());
+            } else if (ch == ')') {
+                stack.pop();
+            }
+        }
+
+        return maxDepth;
+    }
+}
